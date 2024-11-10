@@ -1,8 +1,9 @@
-import React from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
-import { Wand2 } from 'lucide-react';
-import AIOptimizer from './pages/AIOptimizer';
-import ResumeForm from './pages/ResumeForm';
+import React from "react";
+import { Routes, Route, Link } from "react-router-dom";
+import { Wand2 } from "lucide-react";
+import AIOptimizer from "./pages/AIOptimizer";
+import ResumeForm from "./pages/ResumeForm";
+import Template from "./pages/Template";
 
 function App() {
   return (
@@ -13,7 +14,9 @@ function App() {
             <div className="flex">
               <div className="flex-shrink-0 flex items-center">
                 <Wand2 className="h-8 w-8 text-purple-600" />
-                <span className="ml-2 text-xl font-bold text-gray-900">Resume Builder</span>
+                <span className="ml-2 text-xl font-bold text-gray-900">
+                  Resume Builder
+                </span>
               </div>
               <div className="ml-6 flex space-x-8">
                 <Link
@@ -37,6 +40,7 @@ function App() {
       <Routes>
         <Route path="/" element={<AIOptimizer />} />
         <Route path="/resume" element={<ResumeForm />} />
+        <Route path="/template" element={<Template />} />
       </Routes>
     </div>
   );
