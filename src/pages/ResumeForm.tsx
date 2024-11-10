@@ -41,7 +41,7 @@ function ResumeForm() {
     email: "",
     linkedin: "",
     github: "",
-    phone: "",
+    phoneNumber: "",
     location: "",
     summary: "",
   });
@@ -362,8 +362,8 @@ function ResumeForm() {
               </label>
               <input
                 type="tel"
-                name="phone"
-                value={personalInfo.phone}
+                name="phoneNumber"
+                value={personalInfo.phoneNumber}
                 onChange={handlePersonalInfoChange}
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
               />

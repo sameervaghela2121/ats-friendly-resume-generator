@@ -121,7 +121,7 @@ const ResumePDFTemplate = () => {
             </div>
             <div className="flex items-center gap-1">
               <Phone size={14} />
-              <span>{personalInfo.phone}</span>
+              <span>{personalInfo.phoneNumber}</span>
             </div>
             <div className="flex items-center gap-1">
               <Github size={14} />
