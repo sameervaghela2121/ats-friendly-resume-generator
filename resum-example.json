@@ -1,0 +1,67 @@
+"resume": {
+        "name": "Sameer Vaghela Kirankumar",
+        "email": "sameervaghela21@gmail.com",
+        "linkedinLink": "https://www.linkedin.com/in/sameer-vaghela-bb3860190/",
+        "phoneNumber": "+91 7016924438",
+        "githubLink": "sameervaghela2121",
+        "location": "Ahmedabad, Gujarat, India",
+        "summary": "MERN Stack Developer with expertise in ReactJS, NodeJS, MongoDB, and Express. I've developed and optimized web applications, integrated third-party services, and worked on both frontend and backend solutions. Your experience includes managing complex tasks like API development, microservices, and cloud deployments using AWS and Docker. You are also focused on enhancing user engagement and performance while exploring AI-driven solutions for content creation and document processing.",
+        "skills": [
+            "ReactJs",
+            "NodeJs",
+            "Express",
+            "MongoDB",
+            "JIRA",
+            "SDLC",
+            "Python",
+            "Flask",
+            "JavaScript",
+            "Front-End Architecture",
+            "Usability Best Practices",
+            "User Experience Design",
+            "Performance Optimization",
+            "Application Security",
+            "Two-Factor Authentication"
+        ],
+        "education": [
+            {
+                "id": "1731152411524",
+                "name": "Sal College of Engineering",
+                "startDate": "2017-08",
+                "endDate": "2021-05",
+                "certification": "Bachelors of Engineering in Information Technology",
+                "gpa": "8.3"
+            },
+            {
+                "id": "1731152463700",
+                "name": "Sal Institute of Technology and Engineering Research",
+                "startDate": "2022-08",
+                "endDate": "2024-05",
+                "certification": "Masters of Engineering in Computer Engineering",
+                "gpa": "9"
+            }
+        ],
+        "workExperience": [
+            {
+                "id": "1731152305542",
+                "companyName": "Aglowid IT Solutions",
+                "roleTitle": "Trainee",
+                "startDate": "2021-04",
+                "endDate": "2024-10",
+                "location": "Ahmedabad, Gujarat, India",
+                "bulletPoints": []
+            },
+            {
+                "id": "1731152343141",
+                "companyName": "ThirdRockTechkno",
+                "roleTitle": "Software Engineer",
+                "startDate": "2021-10",
+                "endDate": "present",
+                "location": "Ahmedabad, Gujarat, India",
+                "bulletPoints": []
+            }
+        ],
+        "projects": [],
+        "certifications": [],
+        "extracurriculars": []
+    }
