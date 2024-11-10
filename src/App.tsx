@@ -1,21 +1,24 @@
-import React, { useState } from 'react';
-import { FileUp, Wand2 } from 'lucide-react';
-import { FileUpload } from './components/FileUpload';
-import { ResumePreview } from './components/ResumePreview';
-import { AIProviderSelector } from './components/AIProviderSelector';
-import { optimizeResume } from './services/ai';
-import { AIProvider, AIModel, DEFAULT_MODELS } from './services/ai/types';
+import React, { useState } from "react";
+import { FileUp, Wand2 } from "lucide-react";
+import { FileUpload } from "./components/FileUpload";
+import { ResumePreview } from "./components/ResumePreview";
+import { AIProviderSelector } from "./components/AIProviderSelector";
+import { optimizeResume } from "./services/ai";
+import { AIProvider, AIModel, DEFAULT_MODELS } from "./services/ai/types";
 
 function App() {
-  const [jobDescription, setJobDescription] = useState('');
+  const [jobDescription, setJobDescription] = useState("");
   const [resumeFile, setResumeFile] = useState<File | null>(null);
-  const [optimizedResume, setOptimizedResume] = useState('');
+  const [optimizedResume, setOptimizedResume] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  
+
   // AI Configuration state
-  const [selectedProvider, setSelectedProvider] = useState<AIProvider>('gemini');
-  const [selectedModel, setSelectedModel] = useState<AIModel>(DEFAULT_MODELS.gemini[0]);
-  const [apiKey, setApiKey] = useState('');
+  const [selectedProvider, setSelectedProvider] =
+    useState<AIProvider>("gemini");
+  const [selectedModel, setSelectedModel] = useState<AIModel>(
+    DEFAULT_MODELS.gemini[0]
+  );
+  const [apiKey, setApiKey] = useState("");
 
   const handleResumeUpload = (file: File) => {
     setResumeFile(file);
@@ -36,15 +39,17 @@ function App() {
         {
           provider: selectedProvider,
           model: selectedModel,
-          apiKey: apiKey || undefined
+          apiKey: apiKey || undefined,
         },
         jobDescription,
         resumeText
       );
       setOptimizedResume(optimized);
     } catch (error) {
-      console.error('Error:', error);
-      alert('Error optimizing resume. Please check your API key and try again.');
+      console.error("Error:", error);
+      alert(
+        "Error optimizing resume. Please check your API key and try again."
+      );
     } finally {
       setIsLoading(false);
     }
@@ -82,7 +87,7 @@ function App() {
                   Job Description
                 </label>
                 <textarea
-                  className="w-full h-64 p-4 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  className="w-full h-16 p-4 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                   placeholder="Paste the job description here..."
                   value={jobDescription}
                   onChange={(e) => setJobDescription(e.target.value)}
@@ -101,8 +106,8 @@ function App() {
                 className={`w-full py-3 px-4 rounded-lg text-white font-medium flex items-center justify-center space-x-2
                   ${
                     !resumeFile || !jobDescription || isLoading
-                      ? 'bg-gray-400'
-                      : 'bg-purple-600 hover:bg-purple-700'
+                      ? "bg-gray-400"
+                      : "bg-purple-600 hover:bg-purple-700"
                   }`}
               >
                 {isLoading ? (
