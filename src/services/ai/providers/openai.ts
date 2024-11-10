@@ -1,5 +1,5 @@
-import OpenAI from 'openai';
-import { AIConfig } from '../types';
+import OpenAI from "openai";
+import { AIConfig } from "../types";
 
 export async function generateWithOpenAI(
   config: AIConfig,
@@ -8,20 +8,21 @@ export async function generateWithOpenAI(
 ): Promise<string> {
   const apiKey = config.apiKey || import.meta.env.VITE_OPENAI_API_KEY;
   if (!apiKey) {
-    throw new Error('OpenAI API key is required');
+    throw new Error("OpenAI API key is required");
   }
 
-  const openai = new OpenAI({ apiKey });
+  const openai = new OpenAI({ apiKey, dangerouslyAllowBrowser: true });
 
   const response = await openai.chat.completions.create({
     model: config.model,
     messages: [
       {
-        role: 'system',
-        content: 'You are an expert ATS resume optimizer and professional resume writer.'
+        role: "system",
+        content:
+          "You are an expert ATS resume optimizer and professional resume writer.",
       },
       {
-        role: 'user',
+        role: "user",
         content: `
           Please optimize this resume for ATS compatibility based on the job description.
           Focus on:
@@ -35,11 +36,11 @@ export async function generateWithOpenAI(
 
           Current Resume:
           ${resumeText}
-        `
-      }
+        `,
+      },
     ],
-    temperature: 0.7
+    temperature: 0.7,
   });
 
-  return response.choices[0]?.message?.content || '';
+  return response.choices[0]?.message?.content || "";
 }
