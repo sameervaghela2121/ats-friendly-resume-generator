@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Plus, Minus, Trash2 } from "lucide-react";
 import CertificationForm from "../components/CertificationForm";
 import ExtracurricularForm from "../components/ExtracurricularForm";
@@ -277,29 +277,134 @@ function ResumeForm() {
     setExtracurriculars(newExtracurriculars);
   };
 
+  // const handleSubmit = (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   // Handle form submission
+  //   console.log({
+  //     personalInfo,
+  //     workExperiences,
+  //     education,
+  //     skills,
+  //     extracurriculars,
+  //     certifications,
+  //   });
+  //   localStorage.setItem(
+  //     "resume",
+  //     JSON.stringify({
+  //       personalInfo,
+  //       workExperiences,
+  //       education,
+  //       skills,
+  //       extracurriculars,
+  //       certifications,
+  //     })
+  //   );
+  // };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log({
-      personalInfo,
-      workExperiences,
-      education,
+
+    // Transform the data to match the required format
+    const formattedData = {
+      personalInfo: {
+        name: personalInfo.name,
+        email: personalInfo.email,
+        linkedinLink: personalInfo.linkedin,
+        githubLink: personalInfo.github,
+        phoneNumber: personalInfo.phoneNumber,
+        location: personalInfo.location,
+        summary: personalInfo.summary,
+      },
+      workExperience: workExperiences.map((exp) => ({
+        companyName: exp.companyName,
+        roleTitle: exp.roleTitle,
+        startDate: exp.startDate,
+        endDate: exp.currentlyWorkHere ? "present" : exp.endDate,
+        location: exp.location,
+        bulletPoints: exp.bulletPoints,
+      })),
+      education: education.map((edu) => ({
+        id: Math.random().toString(),
+        name: edu.institution,
+        certification: edu.certification,
+        startDate: edu.startDate,
+        endDate: edu.endDate,
+        gpa: edu.gpa,
+      })),
       skills,
       extracurriculars,
       certifications,
-    });
-    localStorage.setItem(
-      "resume",
-      JSON.stringify({
-        personalInfo,
-        workExperiences,
-        education,
-        skills,
-        extracurriculars,
-        certifications,
-      })
-    );
+      projects: [], // Added to match the format
+    };
+
+    localStorage.setItem("resume", JSON.stringify(formattedData));
+    alert("Resume data saved successfully!");
   };
+
+  useEffect(() => {
+    const savedData = localStorage.getItem("resume");
+    if (savedData) {
+      const parsedData = JSON.parse(savedData);
+
+      // Map stored data to component state
+      setPersonalInfo({
+        name: parsedData.personalInfo.name || "",
+        email: parsedData.personalInfo.email || "",
+        linkedin: parsedData.personalInfo.linkedinLink || "",
+        github: parsedData.personalInfo.githubLink || "",
+        phoneNumber: parsedData.personalInfo.phoneNumber || "",
+        location: parsedData.personalInfo.location || "",
+        summary: parsedData.personalInfo.summary || "",
+      });
+
+      // Map work experience
+      const mappedWorkExp = parsedData.workExperience?.map((exp: any) => ({
+        companyName: exp.companyName || "",
+        roleTitle: exp.roleTitle || "",
+        startDate: exp.startDate || "",
+        endDate: exp.endDate === "present" ? "" : exp.endDate || "",
+        location: exp.location || "",
+        currentlyWorkHere: exp.endDate === "present",
+        bulletPoints: exp.bulletPoints || [""],
+      })) || [defaultWorkExperience];
+      setWorkExperiences(mappedWorkExp);
+
+      // Map education
+      const mappedEducation = parsedData.education?.map((edu: any) => ({
+        institution: edu.name || "",
+        certification: edu.certification || "",
+        startDate: edu.startDate || "",
+        endDate: edu.endDate || "",
+        gpa: edu.gpa || "",
+      })) || [defaultEducation];
+      setEducation(mappedEducation);
+
+      // Map skills
+      setSkills(parsedData.skills || []);
+
+      // Map extracurriculars
+      const mappedExtracurriculars = parsedData.extracurriculars?.map(
+        (ext: any) => ({
+          companyName: ext.companyName || "",
+          roleTitle: ext.roleTitle || "",
+          startDate: ext.startDate || "",
+          endDate: ext.endDate || "",
+          location: ext.location || "",
+          bulletPoints: ext.bulletPoints || [""],
+        })
+      ) || [defaultExtracurricular];
+      setExtracurriculars(mappedExtracurriculars);
+
+      // Map certifications
+      const mappedCertifications = parsedData.certifications?.map(
+        (cert: any) => ({
+          title: cert.title || "",
+          description: cert.description || "",
+        })
+      ) || [{ title: "", description: "" }];
+      setCertifications(mappedCertifications);
+    }
+  }, []);
 
   return (
     <div className="container mx-auto px-4 py-8">
