@@ -11,3 +11,13 @@
 .prose pre {
   @apply bg-gray-50 p-4 rounded-lg;
 }
+
+input{
+  outline: none !important;
+  padding: 1px 0px;
+}
+
+textarea{
+  outline: none !important;
+  padding: 1px 0px;
+}
